@@ -1,15 +1,12 @@
 import { RootLayout } from '../../components/RootLayout'
 import AddIcon from '@mui/icons-material/Add'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import { useNavigate } from 'react-router-dom'
 
 export default function IndexPage() {
   return (
     <RootLayout>
-      <header className="h-[68px] flex items-center justify-center border-b border-[#D3D3D3]">
-        <h1 className="text-[24px] text-[#ED6D1D] font-bold">
-          O2 - 오늘의 투자일기
-        </h1>
-      </header>
+      <Header />
       <div className="m-auto w-[788px] pt-[48px]">
         {/* 리스트 정보 불러오기 부분 */}
         <div className="flex items-center justify-between">
@@ -53,9 +50,26 @@ export default function IndexPage() {
   )
 }
 
-function ListCard({ date, title, content, type }) {
+const Header = () => {
   return (
-    <div className="pt-[16px] px-[22px] bg-white rounded-[10px] h-[140px] relative shadow-sm">
+    <header className="h-[68px] flex items-center justify-center border-b border-[#D3D3D3]">
+      <h1 className="text-[24px] text-[#ED6D1D] font-bold">
+        O2 - 오늘의 투자일기
+      </h1>
+    </header>
+  )
+}
+
+const ListCard = ({ date, title, content, type }) => {
+  const navigate = useNavigate()
+
+  return (
+    <div
+      className="pt-[16px] px-[22px] bg-white rounded-[10px] h-[140px] relative shadow-sm cursor-pointer"
+      onClick={() => {
+        navigate('/diary/test')
+      }}
+    >
       <span className="text-[14px] text-[#454545]">{date}</span>
       <h2 className="text-[20px] text-[#121212] font-bold">{title}</h2>
       <div className="pt-[10px] text[#2B2B2B]">{content}</div>
