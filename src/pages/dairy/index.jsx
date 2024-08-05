@@ -1,4 +1,4 @@
-import { RootLayout } from '../components/RootLayout'
+import { RootLayout } from '../../components/RootLayout'
 import AddIcon from '@mui/icons-material/Add'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
