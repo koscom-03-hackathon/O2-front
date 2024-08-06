@@ -99,7 +99,7 @@ const Strategy = ({ data }) => {
   const onOpen = () => setOpen(true)
 
   const { data: feedback } = useQuery({
-    queryKey: ['diary', diaryId, 'AI'],
+    queryKey: ['diary', 'AI', diaryId, 'strategy'],
     queryFn: () => getAIStrategy(),
   })
 
@@ -130,7 +130,7 @@ const FeedBack = ({ data }) => {
   const onOpen = () => setOpen(true)
 
   const { data: feedback } = useQuery({
-    queryKey: ['diary', diaryId, 'AI'],
+    queryKey: ['diary', 'AI', diaryId, 'feedback'],
     queryFn: () => getAIFeedback(),
   })
 
@@ -145,7 +145,7 @@ const FeedBack = ({ data }) => {
         open={open}
         onClose={onClose}
         content={feedback}
-        type="strategy"
+        type="feedback"
       />
     </>
   )
