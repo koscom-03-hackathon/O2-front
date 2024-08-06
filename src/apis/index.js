@@ -29,7 +29,7 @@ export const deleteDiary = (id) =>
     },
   })
 
-export const updateDiary = ({ data }) => client.post('/diary/update', data)
+export const updateDiary = (data) => client.post('/diary/update', data)
 
 export const getAIStrategy = () =>
   client.get('/diary/strategy/openai?userId=qwer1234').then(({ data }) => data)

@@ -1,0 +1,840 @@
+{
+  stock: 'TSLA',
+  amount: 6576440,
+  quantity: 20,
+  previous_quote: 328822,
+  current_quote: 328822,
+  date: '2024-07-08'
+}
+{
+  stock: 'AAPL',
+  amount: 3553992,
+  quantity: 12,
+  previous_quote: 296166,
+  current_quote: 296166,
+  date: '2024-07-08'
+}
+{
+  stock: 'NVDA',
+  amount: 1332800,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 166600,
+  date: '2024-07-08'
+}
+{
+  stock: 'MSFT',
+  amount: 4848896,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 606112,
+  date: '2024-07-08'
+}
+{
+  stock: 'SQQQ',
+  amount: 19240,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9620,
+  date: '2024-07-08'
+}
+{
+  stock: 'TSLA',
+  amount: 6820580,
+  quantity: 20,
+  previous_quote: 328822,
+  current_quote: 341029,
+  date: '2024-07-09'
+}
+{
+  stock: 'AAPL',
+  amount: 3567408,
+  quantity: 12,
+  previous_quote: 296166,
+  current_quote: 297284,
+  date: '2024-07-09'
+}
+{
+  stock: 'NVDA',
+  amount: 1366352,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 170794,
+  date: '2024-07-09'
+}
+{
+  stock: 'MSFT',
+  amount: 4779216,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 597402,
+  date: '2024-07-09'
+}
+{
+  stock: 'SQQQ',
+  amount: 19214,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9607,
+  date: '2024-07-09'
+}
+{
+  stock: 'TSLA',
+  amount: 6844760,
+  quantity: 20,
+  previous_quote: 328822,
+  current_quote: 342238,
+  date: '2024-07-10'
+}
+{
+  stock: 'AAPL',
+  amount: 3634488,
+  quantity: 12,
+  previous_quote: 296166,
+  current_quote: 302874,
+  date: '2024-07-10'
+}
+{
+  stock: 'NVDA',
+  amount: 1403064,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 175383,
+  date: '2024-07-10'
+}
+{
+  stock: 'MSFT',
+  amount: 4849000,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 606125,
+  date: '2024-07-10'
+}
+{
+  stock: 'SQQQ',
+  amount: 18642,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9321,
+  date: '2024-07-10'
+}
+{
+  stock: 'TSLA',
+  amount: 7206797,
+  quantity: 23,
+  previous_quote: 326802.48,
+  current_quote: 313339,
+  date: '2024-07-11'
+}
+{
+  stock: 'AAPL',
+  amount: 2366728,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 295841,
+  date: '2024-07-11'
+}
+{
+  stock: 'NVDA',
+  amount: 1324960,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 165620,
+  date: '2024-07-11'
+}
+{
+  stock: 'MSFT',
+  amount: 4728880,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 591110,
+  date: '2024-07-11'
+}
+{
+  stock: 'SQQQ',
+  amount: 19838,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9919,
+  date: '2024-07-11'
+}
+{
+  stock: 'TSLA',
+  amount: 7422077,
+  quantity: 23,
+  previous_quote: 326802.48,
+  current_quote: 322699,
+  date: '2024-07-12'
+}
+{
+  stock: 'AAPL',
+  amount: 2397616,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 299702,
+  date: '2024-07-12'
+}
+{
+  stock: 'NVDA',
+  amount: 1344096,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 168012,
+  date: '2024-07-12'
+}
+{
+  stock: 'MSFT',
+  amount: 4716920,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 589615,
+  date: '2024-07-12'
+}
+{
+  stock: 'SQQQ',
+  amount: 19526,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9763,
+  date: '2024-07-12'
+}
+{
+  stock: 'TSLA',
+  amount: 7553936,
+  quantity: 23,
+  previous_quote: 326802.48,
+  current_quote: 328432,
+  date: '2024-07-15'
+}
+{
+  stock: 'AAPL',
+  amount: 2437760,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 304720,
+  date: '2024-07-15'
+}
+{
+  stock: 'NVDA',
+  amount: 1335776,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 166972,
+  date: '2024-07-15'
+}
+{
+  stock: 'MSFT',
+  amount: 4721184,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 590148,
+  date: '2024-07-15'
+}
+{
+  stock: 'SQQQ',
+  amount: 19396,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9698,
+  date: '2024-07-15'
+}
+{
+  stock: 'TSLA',
+  amount: 7671144,
+  quantity: 23,
+  previous_quote: 326802.48,
+  current_quote: 333528,
+  date: '2024-07-16'
+}
+{
+  stock: 'AAPL',
+  amount: 2442128,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 305266,
+  date: '2024-07-16'
+}
+{
+  stock: 'NVDA',
+  amount: 1314144,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 164268,
+  date: '2024-07-16'
+}
+{
+  stock: 'MSFT',
+  amount: 4675008,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 584376,
+  date: '2024-07-16'
+}
+{
+  stock: 'SQQQ',
+  amount: 19396,
+  quantity: 2,
+  previous_quote: 9620,
+  current_quote: 9698,
+  date: '2024-07-16'
+}
+{
+  stock: 'TSLA',
+  amount: 5491850,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 323050,
+  date: '2024-07-17'
+}
+{
+  stock: 'AAPL',
+  amount: 2380352,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 297544,
+  date: '2024-07-17'
+}
+{
+  stock: 'NVDA',
+  amount: 1227096,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 153387,
+  date: '2024-07-17'
+}
+{
+  stock: 'MSFT',
+  amount: 4612608,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 576576,
+  date: '2024-07-17'
+}
+{
+  stock: 'SQQQ',
+  amount: 126516,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 10543,
+  date: '2024-07-17'
+}
+{
+  stock: 'TSLA',
+  amount: 5507983,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 323999,
+  date: '2024-07-18'
+}
+{
+  stock: 'AAPL',
+  amount: 2331472,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 291434,
+  date: '2024-07-18'
+}
+{
+  stock: 'NVDA',
+  amount: 1259336,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 157417,
+  date: '2024-07-18'
+}
+{
+  stock: 'MSFT',
+  amount: 4579848,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 572481,
+  date: '2024-07-18'
+}
+{
+  stock: 'SQQQ',
+  amount: 128388,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 10699,
+  date: '2024-07-18'
+}
+{
+  stock: 'TSLA',
+  amount: 5286320,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 310960,
+  date: '2024-07-19'
+}
+{
+  stock: 'AAPL',
+  amount: 2332824,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 291603,
+  date: '2024-07-19'
+}
+{
+  stock: 'NVDA',
+  amount: 1226472,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 153309,
+  date: '2024-07-19'
+}
+{
+  stock: 'MSFT',
+  amount: 4545944,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 568243,
+  date: '2024-07-19'
+}
+{
+  stock: 'SQQQ',
+  amount: 131976,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 10998,
+  date: '2024-07-19'
+}
+{
+  stock: 'TSLA',
+  amount: 5558371,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 326963,
+  date: '2024-07-22'
+}
+{
+  stock: 'AAPL',
+  amount: 2329184,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 291148,
+  date: '2024-07-22'
+}
+{
+  stock: 'NVDA',
+  amount: 1284816,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 160602,
+  date: '2024-07-22'
+}
+{
+  stock: 'MSFT',
+  amount: 4606576,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 575822,
+  date: '2024-07-22'
+}
+{
+  stock: 'SQQQ',
+  amount: 126204,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 10517,
+  date: '2024-07-22'
+}
+{
+  stock: 'TSLA',
+  amount: 5444998,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 320294,
+  date: '2024-07-23'
+}
+{
+  stock: 'AAPL',
+  amount: 2340104,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 292513,
+  date: '2024-07-23'
+}
+{
+  stock: 'NVDA',
+  amount: 1274936,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 159367,
+  date: '2024-07-23'
+}
+{
+  stock: 'MSFT',
+  amount: 4626440,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 578305,
+  date: '2024-07-23'
+}
+{
+  stock: 'SQQQ',
+  amount: 127608,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 10634,
+  date: '2024-07-23'
+}
+{
+  stock: 'TSLA',
+  amount: 4773379,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 280787,
+  date: '2024-07-24'
+}
+{
+  stock: 'AAPL',
+  amount: 2272816,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 284102,
+  date: '2024-07-24'
+}
+{
+  stock: 'NVDA',
+  amount: 1188200,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 148525,
+  date: '2024-07-24'
+}
+{
+  stock: 'MSFT',
+  amount: 4460560,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 557570,
+  date: '2024-07-24'
+}
+{
+  stock: 'SQQQ',
+  amount: 141336,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 11778,
+  date: '2024-07-24'
+}
+{
+  stock: 'TSLA',
+  amount: 4867525,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 286325,
+  date: '2024-07-25'
+}
+{
+  stock: 'AAPL',
+  amount: 2261896,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 282737,
+  date: '2024-07-25'
+}
+{
+  stock: 'NVDA',
+  amount: 1167712,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 145964,
+  date: '2024-07-25'
+}
+{
+  stock: 'MSFT',
+  amount: 4351360,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 543920,
+  date: '2024-07-25'
+}
+{
+  stock: 'SQQQ',
+  amount: 146160,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 12180,
+  date: '2024-07-25'
+}
+{
+  stock: 'TSLA',
+  amount: 4857580,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 285740,
+  date: '2024-07-26'
+}
+{
+  stock: 'AAPL',
+  amount: 2266784,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 283348,
+  date: '2024-07-26'
+}
+{
+  stock: 'NVDA',
+  amount: 1175824,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 146978,
+  date: '2024-07-26'
+}
+{
+  stock: 'MSFT',
+  amount: 4422808,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 552851,
+  date: '2024-07-26'
+}
+{
+  stock: 'SQQQ',
+  amount: 141960,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 11830,
+  date: '2024-07-26'
+}
+{
+  stock: 'TSLA',
+  amount: 5129410,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 301730,
+  date: '2024-07-29'
+}
+{
+  stock: 'AAPL',
+  amount: 2269696,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 283712,
+  date: '2024-07-29'
+}
+{
+  stock: 'NVDA',
+  amount: 1160536,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 145067,
+  date: '2024-07-29'
+}
+{
+  stock: 'MSFT',
+  amount: 4437992,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 554749,
+  date: '2024-07-29'
+}
+{
+  stock: 'SQQQ',
+  amount: 141180,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 11765,
+  date: '2024-07-29'
+}
+{
+  stock: 'TSLA',
+  amount: 4919902,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 289406,
+  date: '2024-07-30'
+}
+{
+  stock: 'AAPL',
+  amount: 2275520,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 284440,
+  date: '2024-07-30'
+}
+{
+  stock: 'NVDA',
+  amount: 1078792,
+  quantity: 8,
+  previous_quote: 166600,
+  current_quote: 134849,
+  date: '2024-07-30'
+}
+{
+  stock: 'MSFT',
+  amount: 4398368,
+  quantity: 8,
+  previous_quote: 606112,
+  current_quote: 549796,
+  date: '2024-07-30'
+}
+{
+  stock: 'SQQQ',
+  amount: 147108,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 12259,
+  date: '2024-07-30'
+}
+{
+  stock: 'TSLA',
+  amount: 5128747,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 301691,
+  date: '2024-07-31'
+}
+{
+  stock: 'AAPL',
+  amount: 2309632,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 288704,
+  date: '2024-07-31'
+}
+{
+  stock: 'NVDA',
+  amount: 912756,
+  quantity: 6,
+  previous_quote: 166600,
+  current_quote: 152126,
+  date: '2024-07-31'
+}
+{
+  stock: 'MSFT',
+  amount: 3263130,
+  quantity: 6,
+  previous_quote: 606112,
+  current_quote: 543855,
+  date: '2024-07-31'
+}
+{
+  stock: 'SQQQ',
+  amount: 134004,
+  quantity: 12,
+  previous_quote: 9685,
+  current_quote: 11167,
+  date: '2024-07-31'
+}
+{
+  stock: 'TSLA',
+  amount: 4792606,
+  quantity: 17,
+  previous_quote: 326802.48,
+  current_quote: 281918,
+  date: '2024-08-01'
+}
+{
+  stock: 'AAPL',
+  amount: 2270944,
+  quantity: 8,
+  previous_quote: 296166,
+  current_quote: 283868,
+  date: '2024-08-01'
+}
+{
+  stock: 'NVDA',
+  amount: 567892,
+  quantity: 4,
+  previous_quote: 166600,
+  current_quote: 141973,
+  date: '2024-08-01'
+}
+{
+  stock: 'MSFT',
+  amount: 3253458,
+  quantity: 6,
+  previous_quote: 606112,
+  current_quote: 542243,
+  date: '2024-08-01'
+}
+{
+  stock: 'SQQQ',
+  amount: 3739632,
+  quantity: 312,
+  previous_quote: 11110,
+  current_quote: 11986,
+  date: '2024-08-01'
+}
+{
+  stock: 'TSLA',
+  amount: 1889797,
+  quantity: 7,
+  previous_quote: 326802.48,
+  current_quote: 269971,
+  date: '2024-08-02'
+}
+{
+  stock: 'AAPL',
+  amount: 571636,
+  quantity: 2,
+  previous_quote: 296166,
+  current_quote: 285818,
+  date: '2024-08-02'
+}
+{
+  stock: 'NVDA',
+  amount: 557804,
+  quantity: 4,
+  previous_quote: 166600,
+  current_quote: 139451,
+  date: '2024-08-02'
+}
+{
+  stock: 'MSFT',
+  amount: 3186222,
+  quantity: 6,
+  previous_quote: 606112,
+  current_quote: 531037,
+  date: '2024-08-02'
+}
+{
+  stock: 'SQQQ',
+  amount: 4011384,
+  quantity: 312,
+  previous_quote: 11110,
+  current_quote: 12857,
+  date: '2024-08-02'
+}
+{
+  stock: 'TSLA',
+  amount: 1809808,
+  quantity: 7,
+  previous_quote: 326802.48,
+  current_quote: 258544,
+  date: '2024-08-05'
+}
+{
+  stock: 'AAPL',
+  amount: 544102,
+  quantity: 2,
+  previous_quote: 296166,
+  current_quote: 272051,
+  date: '2024-08-05'
+}
+{
+  stock: 'NVDA',
+  amount: 522340,
+  quantity: 4,
+  previous_quote: 166600,
+  current_quote: 130585,
+  date: '2024-08-05'
+}
+{
+  stock: 'MSFT',
+  amount: 3082164,
+  quantity: 6,
+  previous_quote: 606112,
+  current_quote: 513694,
+  date: '2024-08-05'
+}
+{
+  stock: 'SQQQ',
+  amount: 4376112,
+  quantity: 312,
+  previous_quote: 11110,
+  current_quote: 14026,
+  date: '2024-08-05'
+}
