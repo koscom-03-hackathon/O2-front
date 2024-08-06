@@ -1,23 +1,25 @@
 import axios from 'axios'
 
 export const client = axios.create({
-  baseURL: 'http://localhost:4040',
-  withCredentials: true,
+  baseURL: 'http://121.141.60.242:8081',
   headers: {
     'Content-Type': `application/json`,
   },
 })
 
-export const getDiaryList = () =>
-  client.get('/diary', {
+export const getDiaryList = async (date) => {
+  const { data } = await client.get('/diary', {
     params: {
-      date: '2024-07',
+      date,
     },
   })
+  return data
+}
 
-export const getDiaryDetail = (id) => client.get(`/diary/${id}`)
+export const getDiaryDetail = (id) =>
+  client.get(`/diary/${id}`).then(({ data }) => data)
 
-export const postDiary = (data) => client.post(`/diary/new`, { data })
+export const postDiary = (data) => client.post(`/diary/new`, data)
 
 export const deleteDiary = (id) =>
   client.delete('diary/delete', {
@@ -27,4 +29,4 @@ export const deleteDiary = (id) =>
     },
   })
 
-export const updateDiary = ({ data }) => client.post('/diary/update', { data })
+export const updateDiary = ({ data }) => client.post('/diary/update', data)

@@ -4,20 +4,30 @@ import { DatePicker } from '@mui/x-date-pickers'
 
 export const Edit = ({ data, setData, onSubmit, open, onClose, type }) => {
   return (
-    <div className="m-auto w-[788px] pt-[48px]">
+    <div className="m-auto w-[788px] py-[48px]">
       {data.type === 'strategy' ? (
-        <Strategy data={data} setData={setData} onSubmit={onSubmit} />
+        <Strategy
+          data={data}
+          setData={setData}
+          onSubmit={onSubmit}
+          type={type}
+        />
       ) : data.type === 'feedback' ? (
-        <FeedBack data={data} setData={setData} onSubmit={onSubmit} />
+        <FeedBack
+          data={data}
+          setData={setData}
+          onSubmit={onSubmit}
+          type={type}
+        />
       ) : (
-        <Free data={data} setData={setData} onSubmit={onSubmit} />
+        <Free data={data} setData={setData} onSubmit={onSubmit} type={type} />
       )}
       <ConfirmModal open={open} onClose={onClose} type={type} />
     </div>
   )
 }
 
-const Strategy = ({ data, setData, onSubmit }) => {
+const Strategy = ({ data, setData, onSubmit, type }) => {
   return (
     <div className="space-y-4">
       <div>
@@ -68,12 +78,14 @@ const Strategy = ({ data, setData, onSubmit }) => {
           placeholder="투자 근거를 입력하세요"
         />
       </div>
-      <Button onClick={onSubmit}>수정하기</Button>
+      <Button onClick={onSubmit}>
+        {type === 'create' ? '생성하기' : '수정하기'}
+      </Button>
     </div>
   )
 }
 
-const FeedBack = ({ data, setData, onSubmit }) => {
+const FeedBack = ({ data, setData, onSubmit, type }) => {
   return (
     <div className="space-y-4">
       <div>
@@ -113,12 +125,14 @@ const FeedBack = ({ data, setData, onSubmit }) => {
           placeholder="투자 피드백을 입력하세요"
         />
       </div>
-      <Button onClick={onSubmit}>수정하기</Button>
+      <Button onClick={onSubmit}>
+        {type === 'create' ? '생성하기' : '수정하기'}
+      </Button>
     </div>
   )
 }
 
-const Free = ({ data, setData, onSubmit }) => {
+const Free = ({ data, setData, onSubmit, type }) => {
   return (
     <div className="space-y-4">
       <div>
@@ -150,15 +164,17 @@ const Free = ({ data, setData, onSubmit }) => {
       <div>
         <Title>내용</Title>
         <textarea
-          value={data.feedback}
+          value={data.content}
           onChange={(e) =>
-            setData((data) => ({ ...data, feedback: e.target.value }))
+            setData((data) => ({ ...data, content: e.target.value }))
           }
           className="py-2 px-3 border border-[#898989] text-base bg-white w-full rounded-lg resize-none text-[#343434] h-[90px] outline-neutral-400"
           placeholder="내용을 입력하세요"
         />
       </div>
-      <Button onClick={onSubmit}>수정하기</Button>
+      <Button onClick={onSubmit}>
+        {type === 'create' ? '생성하기' : '수정하기'}
+      </Button>
     </div>
   )
 }

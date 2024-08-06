@@ -9,6 +9,9 @@ import BallotIcon from '@mui/icons-material/Ballot'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import CommentIcon from '@mui/icons-material/Comment'
 import dayjs from 'dayjs'
+import { useQuery } from '@tanstack/react-query'
+import { getDiaryList } from '../../apis/index'
+import { getTypeText } from '../../utils/getTypeText'
 
 export default function IndexPage() {
   const [open, setOpen] = useState(false)
@@ -27,6 +30,11 @@ export default function IndexPage() {
       dayjs(prevDate).subtract(1, 'month').format('YYYY-MM')
     )
   }
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['diaries', date],
+    queryFn: () => getDiaryList(date),
+  })
 
   return (
     <RootLayout>
@@ -55,24 +63,19 @@ export default function IndexPage() {
 
         {/* 리스트 내용물*/}
         <div className="py-[10px] space-y-[14px] flex flex-col w-full">
-          <ListCard
-            date="2024.07.03"
-            title="QQQ 롱, 국장 숏"
-            content="나스닥이 상승할지는 모르겠지만, 적어도 국장보다는 나을 것 같아 이런 포지션을 잡았다. "
-            type="투자전략"
-          ></ListCard>
-          <ListCard
-            date="2024.07.03"
-            title="QQQ 롱, 국장 숏"
-            content="나스닥이 상승할지는 모르겠지만, 적어도 국장보다는 나을 것 같아 이런 포지션을 잡았다. "
-            type="투자전략"
-          ></ListCard>
-          <ListCard
-            date="2024.07.03"
-            title="QQQ 롱, 국장 숏"
-            content="나스닥이 상승할지는 모르겠지만, 적어도 국장보다는 나을 것 같아 이런 포지션을 잡았다. "
-            type="투자전략"
-          ></ListCard>
+          {!isLoading &&
+            data.map(
+              ({ id, date, title, type, content, strategy, feedback }) => (
+                <ListCard
+                  key={id}
+                  id={id}
+                  date={date}
+                  title={title}
+                  content={strategy || feedback || content || ''}
+                  type={type}
+                ></ListCard>
+              )
+            )}
         </div>
         <CreateDiaryModal open={open} onClose={onClose}></CreateDiaryModal>
       </div>
@@ -90,21 +93,21 @@ const Header = () => {
   )
 }
 
-const ListCard = ({ date, title, content, type }) => {
+const ListCard = ({ id, date, title, content, type }) => {
   const navigate = useNavigate()
 
   return (
     <div
       className="pt-[16px] px-[22px] bg-white rounded-[10px] h-[140px] relative shadow-sm cursor-pointer"
       onClick={() => {
-        navigate('/diary/test')
+        navigate(`/diary/${id}`)
       }}
     >
       <span className="text-[14px] text-[#454545]">{date}</span>
       <h2 className="text-[20px] text-[#121212] font-bold">{title}</h2>
       <div className="pt-[10px] text[#2B2B2B]">{content}</div>
       <div className="absolute top-4 right-5 border border-black rounded-[5px] w-[84px] h-[32px] flex items-center justify-center">
-        <span className="text-[#121212] text-[12px]">{type}</span>
+        <span className="text-[#121212] text-[12px]">{getTypeText(type)}</span>
       </div>
     </div>
   )

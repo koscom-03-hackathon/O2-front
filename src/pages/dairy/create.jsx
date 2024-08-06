@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Edit } from '../../components/common/Edit'
 import dayjs from 'dayjs'
+import { postDiary } from '../../apis/index'
 
 export const CreatePage = () => {
   const { type } = useParams()
@@ -47,6 +48,7 @@ const Header = ({ type }) => {
 }
 
 const Content = ({ type }) => {
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
@@ -61,9 +63,9 @@ const Content = ({ type }) => {
     feedback: '',
   })
 
-  console.log(data)
-
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    await postDiary(data)
+    navigate(-1, { replace: true })
     onOpen()
   }
 
@@ -74,6 +76,7 @@ const Content = ({ type }) => {
       onSubmit={onSubmit}
       open={open}
       onClose={onClose}
+      type="create"
     />
   )
 }

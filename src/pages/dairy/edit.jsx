@@ -4,43 +4,29 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getTypeText } from '../../utils/getTypeText'
 import { Edit } from '../../components/common/Edit'
-
-const mockData = {
-  type: 'strategy',
-  title: 'QQQ 롱, 국장 숏',
-  date: '2024.07.03',
-  strategy:
-    '전반적으로 주식 시장이 상승할 것이라고 생각해서 기존에 헷징했던 코스피 200 선물을 매도함.',
-  reasoning: 'QQQ는 미 대선 이슈로 국장 대비 아웃퍼폼할 것이라고 생각함.',
-  meta: [
-    {
-      type: '매수',
-      kind: 'QQQ',
-      price: 20000,
-      amount: 100,
-      totalPrice: 2000000,
-      RoR: 8,
-    },
-    {
-      type: '매도',
-      kind: '코스피200 선물 인버스 x2',
-      price: 2000,
-      amount: 1000,
-      totalPrice: 2000000,
-      RoR: -8,
-    },
-  ],
-}
+import { useQuery } from '@tanstack/react-query'
+import { getDiaryDetail, updateDiary } from '../../apis/index'
 
 export const EditPage = () => {
   const { diaryId } = useParams()
+
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['diary', diaryId],
+    queryFn: () => getDiaryDetail(diaryId),
+  })
 
   // 데이터 불러오기...
 
   return (
     <RootLayout>
-      <Header type={mockData.type} />
-      <Content data={mockData} />
+      {!isLoading ? (
+        <>
+          <Header type={data.type} />
+          <Content data={data} refetch={refetch} />
+        </>
+      ) : (
+        <></>
+      )}
     </RootLayout>
   )
 }
@@ -71,9 +57,13 @@ const Header = ({ type }) => {
   )
 }
 
-const Content = ({ data: beforeData }) => {
+const Content = ({ data: beforeData, refetch }) => {
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
-  const onClose = () => setOpen(false)
+  const onClose = () => {
+    setOpen(false)
+    navigate(-1, { replace: true })
+  }
   const onOpen = () => setOpen(true)
 
   const [data, setData] = useState({
@@ -86,7 +76,9 @@ const Content = ({ data: beforeData }) => {
     feedback: beforeData.feedback,
   })
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    await updateDiary(data)
+    await refetch()
     onOpen()
   }
 
