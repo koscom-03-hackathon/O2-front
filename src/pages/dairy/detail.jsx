@@ -9,6 +9,44 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getDiaryDetail, getAIFeedback } from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
+import React from 'react';
+import Chip from '@mui/material/Chip';
+
+
+const RefineAIFeedback = ({ children }) => {
+  const content = children.split('\n');
+  const sections = [];
+  let currentSection = null;
+
+  content.forEach(line => {
+    line = line.trimStart()
+    if (line.startsWith('### ')) {
+      if (currentSection) {
+        sections.push(currentSection);
+      }
+      currentSection = { title: line.trimStart().replace('### ', ''), content: [] };
+    } else if (currentSection) {
+      // line = line.replace(/\#\#\#/g, '');
+      currentSection.content.push(line.replace(/\*\*/g, ''));
+    }
+  });
+
+  if (currentSection) {
+    sections.push(currentSection);
+  }
+
+  return (
+    <div className="min-h-[130px] pt-[28px] px-[32px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[700px] overflow-scroll">
+      {sections.map((section, index) => (
+        <div key={index} style={{padding: 10}}>
+          <Chip label={section.title} color="primary" />
+          <p style={{margin: 5}} >{section.content.join('\n')}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 
 const mockList = [
   {
@@ -63,6 +101,7 @@ export const DetailPage = () => {
   }
   const { type, title, date } = data
 
+
   return (
     <RootLayout>
       <Header title={title} date={date} type={type} onOpen={onOpen} />
@@ -76,6 +115,7 @@ export const DetailPage = () => {
           <Free data={data} />
         )}
       </div>
+      
       <DeleteModal open={open} onClose={onClose} />
     </RootLayout>
   )
@@ -117,6 +157,8 @@ const Header = ({ title, date, type, onOpen }) => {
     </header>
   )
 }
+
+
 
 const Strategy = ({ data }) => {
   const [open, setOpen] = useState(false)
@@ -243,15 +285,19 @@ const Button = ({ children, onClick }) => {
 const ResearchModal = ({ open, onClose, content }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
-      <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
-        <h3 className="text-[22px] text-[#121212] pb-4" fontFamily="One" >
+      <div className="py-8 px-8 w-[1000px] bg-white rounded-lg flex flex-col items-center">
+        <h3 className="text-[22px] text-[#121212] pb-4" style={{fontFamily: "One"}} >
           투자 전략 AI 분석 결과
         </h3>
 
         <p className="text-[#343434] text-[16px] pb-6 px-6">
-          {content ? content.response : '로딩중...'}
+          {content ? <RefineAIFeedback>{content.response}</RefineAIFeedback> : 
+          <div className='flex flex-col items-center'>
+            <img src="/img/loading.gif" width="100px" alt="loading" />
+            <p className='items-center'> 로딩중...</p>
+          </div>}
         </p>
-
+        
         <button
           className="w-[108px] h-[36px] border border-[#121212] rounded-lg bg-white flex items-center justify-center cursor-pointer"
           onClick={onClose}
