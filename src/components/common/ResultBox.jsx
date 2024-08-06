@@ -17,6 +17,12 @@ export const ResultBox = ({ target, now }) => {
               className="w-[110px] text-center"
               style={{ fontFamily: 'One' }}
             >
+              기존 수량
+            </div>
+            <div
+              className="w-[110px] text-center"
+              style={{ fontFamily: 'One' }}
+            >
               기존 체결가
             </div>
             <div className="w-[80px] text-center" style={{ fontFamily: 'One' }}>
@@ -30,7 +36,7 @@ export const ResultBox = ({ target, now }) => {
             </div>
           </div>
           {resultDatas.map(
-            ({ type, kind, before_price, now_price, changed }) => (
+            ({ type, kind, amount, before_price, now_price, changed }) => (
               <div
                 className={classNames(
                   'w-full flex items-center py-2 border rounded-md',
@@ -40,6 +46,7 @@ export const ResultBox = ({ target, now }) => {
               >
                 <div className="w-[80px] text-center">{type}</div>
                 <div className="flex-1">{kind}</div>
+                <div className="w-[110px] text-center">{amount}</div>
                 <div className="w-[110px] text-center">{before_price}</div>
                 <div className="w-[80px] text-center">{now_price}</div>
                 <div className="w-[150px] text-center">{changed}</div>

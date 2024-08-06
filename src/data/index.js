@@ -114,12 +114,15 @@ export const getResultData = (before, now) => {
   return beforeDatas.map((beforeData) => ({
     type: beforeData.changed > 0 ? '매수' : '매도',
     kind: beforeData.stock,
+    amount: beforeData.changed > 0 ? beforeData.changed : -beforeData.changed,
     before_price: beforeData.price,
     now_price: price[beforeData.stock][dateToIndex(now)],
     changed:
       beforeData.changed > 0
-        ? price[beforeData.stock][dateToIndex(now)] - beforeData.price
-        : beforeData.price - price[beforeData.stock][dateToIndex(now)],
+        ? (price[beforeData.stock][dateToIndex(now)] - beforeData.price) *
+          Math.abs(beforeData.changed)
+        : (beforeData.price - price[beforeData.stock][dateToIndex(now)]) *
+          Math.abs(beforeData.changed),
   }))
 }
 

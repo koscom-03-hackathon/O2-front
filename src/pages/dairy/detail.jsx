@@ -16,24 +16,7 @@ import {
 import { getTypeText } from '../../utils/getTypeText'
 import Chip from '@mui/material/Chip'
 import { ChangeBox } from '../../components/common/ChangeBox'
-import dayjs from 'dayjs'
-
-const mockList2 = [
-  {
-    type: '매수',
-    kind: 'QQQ',
-    before_price: 20000,
-    now_price: 18000,
-    changed: -200000,
-  },
-  {
-    type: '매도',
-    kind: '코스피200 선물 인버스 x2',
-    before_price: 2000,
-    now_price: 4000,
-    changed: -200000,
-  },
-]
+import { ResultBox } from '../../components/common/ResultBox'
 
 export const DetailPage = () => {
   const { diaryId } = useParams()
@@ -154,38 +137,7 @@ const FeedBack = ({ data }) => {
   return (
     <>
       <Title>매매 결과</Title>
-      <div className="py-[16px] px-[32px] shadow-sm bg-white rounded-[10px] mb-[32px] space-y-2">
-        <div className="w-full flex items-center">
-          <div className="w-[80px]"></div>
-          <div className="flex-1" style={{ fontFamily: 'One' }}>
-            투자 종목
-          </div>
-          <div className="w-[110px] text-center" style={{ fontFamily: 'One' }}>
-            기존 체결가
-          </div>
-          <div className="w-[80px] text-center" style={{ fontFamily: 'One' }}>
-            현재 시세
-          </div>
-          <div className="w-[150px] text-center" style={{ fontFamily: 'One' }}>
-            총 금액 변동
-          </div>
-        </div>
-        {mockList2.map(({ type, kind, before_price, now_price, changed }) => (
-          <div
-            className={classNames(
-              'w-full flex items-center py-2 border rounded-md',
-              type === '매수' ? 'border-red-500' : 'border-blue-500'
-            )}
-            key={kind}
-          >
-            <div className="w-[80px] text-center">{type}</div>
-            <div className="flex-1">{kind}</div>
-            <div className="w-[110px] text-center">{before_price}</div>
-            <div className="w-[80px] text-center">{now_price}</div>
-            <div className="w-[150px] text-center">{changed}</div>
-          </div>
-        ))}
-      </div>
+      <ResultBox target="2024-07-11" now={data.date}></ResultBox>
       <Title>투자 피드백</Title>
       <Content>{data.feedback}</Content>
       <Button onClick={() => onOpen()}>AI에게 피드백 받아보기</Button>
