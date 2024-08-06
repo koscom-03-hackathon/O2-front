@@ -59,7 +59,7 @@ export const DetailPage = () => {
   })
 
   if (isLoading) {
-    return null
+    return <RootLayout />
   }
   const { type, title, date } = data
 
@@ -248,7 +248,7 @@ const ResearchModal = ({ open, onClose, content }) => {
           투자 전략 AI 분석 결과
         </h3>
 
-        <p className="text-[#343434] text-[16px] pb-6 px-6">
+        <p className="text-[#343434] text-[16px] mb-6 px-6 max-h-[400px] overflow-scroll">
           {content ? content.response : '로딩중...'}
         </p>
 
