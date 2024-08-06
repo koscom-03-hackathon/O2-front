@@ -14,44 +14,45 @@ import {
   deleteDiary,
 } from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
-import React from 'react';
-import Chip from '@mui/material/Chip';
-
+import React from 'react'
+import Chip from '@mui/material/Chip'
 
 const RefineAIFeedback = ({ children }) => {
-  const content = children.split('\n');
-  const sections = [];
-  let currentSection = null;
+  const content = children.split('\n')
+  const sections = []
+  let currentSection = null
 
-  content.forEach(line => {
+  content.forEach((line) => {
     line = line.trimStart()
     if (line.startsWith('### ')) {
       if (currentSection) {
-        sections.push(currentSection);
+        sections.push(currentSection)
       }
-      currentSection = { title: line.trimStart().replace('### ', ''), content: [] };
+      currentSection = {
+        title: line.trimStart().replace('### ', ''),
+        content: [],
+      }
     } else if (currentSection) {
       // line = line.replace(/\#\#\#/g, '');
-      currentSection.content.push(line.replace(/\*\*/g, ''));
+      currentSection.content.push(line.replace(/\*\*/g, ''))
     }
-  });
+  })
 
   if (currentSection) {
-    sections.push(currentSection);
+    sections.push(currentSection)
   }
 
   return (
     <div className="min-h-[130px] pt-[28px] px-[32px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[700px] overflow-scroll">
       {sections.map((section, index) => (
-        <div key={index} style={{padding: 10}}>
+        <div key={index} style={{ padding: 10 }}>
           <Chip label={section.title} color="primary" />
-          <p style={{margin: 5}} >{section.content.join('\n')}</p>
+          <p style={{ margin: 5 }}>{section.content.join('\n')}</p>
         </div>
       ))}
     </div>
-  );
-};
-
+  )
+}
 
 const mockList = [
   {
@@ -106,7 +107,6 @@ export const DetailPage = () => {
   }
   const { type, title, date } = data
 
-
   return (
     <RootLayout>
       <Header title={title} date={date} type={type} onOpen={onOpen} />
@@ -120,7 +120,7 @@ export const DetailPage = () => {
           <Free data={data} />
         )}
       </div>
-      
+
       <DeleteModal open={open} onClose={onClose} />
     </RootLayout>
   )
@@ -163,8 +163,6 @@ const Header = ({ title, date, type, onOpen }) => {
   )
 }
 
-
-
 const Strategy = ({ data }) => {
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
@@ -181,11 +179,21 @@ const Strategy = ({ data }) => {
       <div className="py-[16px] px-[32px] shadow-sm bg-white rounded-[10px] mb-[32px] space-y-2">
         <div className="w-full flex items-center">
           <div className="w-[80px]"></div>
-          <div className="flex-1" style={{fontFamily: "One"}}>투자 종목</div>
-          <div className="w-[110px] text-center" style={{fontFamily: "One"}}>체결가</div>
-          <div className="w-[80px] text-center" style={{fontFamily: "One"}}>수량</div>
-          <div className="w-[150px] text-center" style={{fontFamily: "One"}}>총 금액</div>
-          <div className="w-[60px] text-center" style={{fontFamily: "One"}}>수익률</div>
+          <div className="flex-1" style={{ fontFamily: 'One' }}>
+            투자 종목
+          </div>
+          <div className="w-[110px] text-center" style={{ fontFamily: 'One' }}>
+            체결가
+          </div>
+          <div className="w-[80px] text-center" style={{ fontFamily: 'One' }}>
+            수량
+          </div>
+          <div className="w-[150px] text-center" style={{ fontFamily: 'One' }}>
+            총 금액
+          </div>
+          <div className="w-[60px] text-center" style={{ fontFamily: 'One' }}>
+            수익률
+          </div>
         </div>
         {mockList.map(({ type, kind, price, amount, totalPrice, RoR }) => (
           <div
@@ -197,9 +205,15 @@ const Strategy = ({ data }) => {
           >
             <div className="w-[80px] text-center">{type}</div>
             <div className="flex-1">{kind}</div>
-            <div className="w-[110px] text-center">{price.toLocaleString()}</div>
-            <div className="w-[80px] text-center">{amount.toLocaleString()}</div>
-            <div className="w-[150px] text-center">{totalPrice.toLocaleString()}</div>
+            <div className="w-[110px] text-center">
+              {price.toLocaleString()}
+            </div>
+            <div className="w-[80px] text-center">
+              {amount.toLocaleString()}
+            </div>
+            <div className="w-[150px] text-center">
+              {totalPrice.toLocaleString()}
+            </div>
             <div className="w-[60px] text-center">{RoR}</div>
           </div>
         ))}
@@ -209,7 +223,12 @@ const Strategy = ({ data }) => {
       <Title>투자 근거</Title>
       <Content>{data.reasoning}</Content>
       <Button onClick={() => onOpen()}>AI에게 투자 전략 조언 받기</Button>
-      <ResearchModal open={open} onClose={onClose} content={feedback} />
+      <ResearchModal
+        open={open}
+        onClose={onClose}
+        content={feedback}
+        type="strategy"
+      />
     </>
   )
 }
@@ -230,10 +249,18 @@ const FeedBack = ({ data }) => {
       <div className="py-[16px] px-[32px] shadow-sm bg-white rounded-[10px] mb-[32px] space-y-2">
         <div className="w-full flex items-center">
           <div className="w-[80px]"></div>
-          <div className="flex-1">투자 종목</div>
-          <div className="w-[110px] text-center">기존 호가</div>
-          <div className="w-[80px] text-center">현재 호가</div>
-          <div className="w-[150px] text-center">총 금액 변동</div>
+          <div className="flex-1" style={{ fontFamily: 'One' }}>
+            투자 종목
+          </div>
+          <div className="w-[110px] text-center" style={{ fontFamily: 'One' }}>
+            기존 체결가
+          </div>
+          <div className="w-[80px] text-center" style={{ fontFamily: 'One' }}>
+            현재 시세
+          </div>
+          <div className="w-[150px] text-center" style={{ fontFamily: 'One' }}>
+            총 금액 변동
+          </div>
         </div>
         {mockList2.map(({ type, kind, before_price, now_price, changed }) => (
           <div
@@ -254,7 +281,12 @@ const FeedBack = ({ data }) => {
       <Title>투자 피드백</Title>
       <Content>{data.feedback}</Content>
       <Button onClick={() => onOpen()}>AI에게 피드백 받아보기</Button>
-      <ResearchModal open={open} onClose={onClose} content={feedback} />
+      <ResearchModal
+        open={open}
+        onClose={onClose}
+        content={feedback}
+        type="strategy"
+      />
     </>
   )
 }
@@ -298,22 +330,27 @@ const Button = ({ children, onClick }) => {
   )
 }
 
-const ResearchModal = ({ open, onClose, content }) => {
+const ResearchModal = ({ open, onClose, content, type }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
-      <div className="py-8 px-8 w-[1000px] bg-white rounded-lg flex flex-col items-center">
-        <h3 className="text-[22px] text-[#121212] pb-4" style={{fontFamily: "One"}} >
-          투자 전략 AI 분석 결과
+      <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
+        <h3 className="text-[22px] text-[#121212] pb-4" fontFamily="One">
+          {type === 'strategy'
+            ? '투자 전략 AI 분석 결과'
+            : 'AI 피드백 받아보기'}
         </h3>
 
         <p className="text-[#343434] text-[16px] pb-6 px-6">
-          {content ? <RefineAIFeedback>{content.response}</RefineAIFeedback> : 
-          <div className='flex flex-col items-center'>
-            <img src="/img/loading.gif" width="100px" alt="loading" />
-            <p className='items-center'> 로딩중...</p>
-          </div>}
+          {content ? (
+            <RefineAIFeedback>{content.response}</RefineAIFeedback>
+          ) : (
+            <div className="flex flex-col items-center">
+              <img src="/img/loading.gif" width="100px" alt="loading" />
+              <p className="items-center"> 로딩중...</p>
+            </div>
+          )}
         </p>
-        
+
         <button
           className="w-[108px] h-[36px] border border-[#121212] rounded-lg bg-white flex items-center justify-center cursor-pointer"
           onClick={onClose}
