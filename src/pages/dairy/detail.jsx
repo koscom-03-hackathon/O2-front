@@ -2,80 +2,78 @@ import { RootLayout } from '../../components/RootLayout'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { classNames } from '../../utils/classNames'
 import TransitionsModal from '../../components/common/Modal'
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { getDiaryDetail, getAIFeedback } from '../../apis/index'
+import { getTypeText } from '../../utils/getTypeText'
 
-const mockData = {
-  type: '투자전략',
-  title: 'QQQ 롱, 국장 숏',
-  date: '2024.07.03',
-  strategy:
-    '전반적으로 주식 시장이 상승할 것이라고 생각해서 기존에 헷징했던 코스피 200 선물을 매도함.',
-  reasoning: 'QQQ는 미 대선 이슈로 국장 대비 아웃퍼폼할 것이라고 생각함.',
-  meta: [
-    {
-      type: '매수',
-      kind: 'QQQ',
-      price: 20000,
-      amount: 100,
-      totalPrice: 2000000,
-      RoR: 8,
-    },
-    {
-      type: '매도',
-      kind: '코스피200 선물 인버스 x2',
-      price: 2000,
-      amount: 1000,
-      totalPrice: 2000000,
-      RoR: -8,
-    },
-  ],
-}
+const mockList = [
+  {
+    type: '매수',
+    kind: 'QQQ',
+    price: 20000,
+    amount: 100,
+    totalPrice: 2000000,
+    RoR: 8,
+  },
+  {
+    type: '매도',
+    kind: '코스피200 선물 인버스 x2',
+    price: 2000,
+    amount: 1000,
+    totalPrice: 2000000,
+    RoR: -8,
+  },
+]
 
-// const mockData2 = {
-//   type: '전략피드백',
-//   title: '헷징은 필수다.',
-//   date: '2024.07.05',
-//   feedback:
-//     '헷징을 안하면 안되는구나... 주식 시장이 괜찮아보인다고 헷징을 풀면 하락장에서 골로 간다는걸 배웠음',
-//   meta: [
-//     {
-//       type: '매수',
-//       kind: 'QQQ',
-//       before_price: 20000,
-//       now_price: 18000,
-//       changed: -200000,
-//     },
-//     {
-//       type: '매도',
-//       kind: '코스피200 선물 인버스 x2',
-//       before_price: 2000,
-//       now_price: 4000,
-//       changed: -200000,
-//     },
-//   ],
-// }
+const mockList2 = [
+  {
+    type: '매수',
+    kind: 'QQQ',
+    before_price: 20000,
+    now_price: 18000,
+    changed: -200000,
+  },
+  {
+    type: '매도',
+    kind: '코스피200 선물 인버스 x2',
+    before_price: 2000,
+    now_price: 4000,
+    changed: -200000,
+  },
+]
 
 export const DetailPage = () => {
-  const { type, title, date } = mockData
+  const { diaryId } = useParams()
 
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
+  const { data, isLoading } = useQuery({
+    queryKey: ['diary', diaryId],
+    queryFn: () => getDiaryDetail(diaryId),
+  })
+
+  if (isLoading) {
+    return null
+  }
+  const { type, title, date } = data
+
   return (
     <RootLayout>
       <Header title={title} date={date} type={type} onOpen={onOpen} />
       {/* 내용물 구현 */}
-      <div className="m-auto w-[788px] pt-[48px]">
-        {type === '투자전략' ? (
-          <Strategy data={mockData} />
-        ) : type === '전략피드백' ? (
-          <FeedBack data={mockData} />
+      <div className="m-auto w-[788px] py-[48px]">
+        {type === 'strategy' ? (
+          <Strategy data={data} />
+        ) : type === 'feedback' ? (
+          <FeedBack data={data} />
         ) : (
-          <Free data={mockData} />
+          <Free data={data} />
         )}
       </div>
       <DeleteModal open={open} onClose={onClose} />
@@ -98,7 +96,9 @@ const Header = ({ title, date, type, onOpen }) => {
         />
         <h1 className="mx-10 text-[24px] text-[#121212] font-bold">{title}</h1>
         <div className="border border-black rounded-[5px] w-[88px] h-[36px] flex items-center justify-center">
-          <span className="text-[#121212] text-[14px]">{type}</span>
+          <span className="text-[#121212] text-[14px]">
+            {getTypeText(type)}
+          </span>
         </div>
         <div className="flex-1 ml-4 text-[18px] text-[#121212]">{date}</div>
         <EditIcon
@@ -123,6 +123,11 @@ const Strategy = ({ data }) => {
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
+  const { data: feedback } = useQuery({
+    queryKey: ['diary'],
+    queryFn: () => getAIFeedback(),
+  })
+
   return (
     <>
       <Title>매매 현황</Title>
@@ -135,7 +140,7 @@ const Strategy = ({ data }) => {
           <div className="w-[150px] text-center">총 금액</div>
           <div className="w-[60px] text-center">수익률</div>
         </div>
-        {data.meta.map(({ type, kind, price, amount, totalPrice, RoR }) => (
+        {mockList.map(({ type, kind, price, amount, totalPrice, RoR }) => (
           <div
             className={classNames(
               'w-full flex items-center py-2 border rounded-md',
@@ -157,7 +162,7 @@ const Strategy = ({ data }) => {
       <Title>투자 근거</Title>
       <Content>{data.reasoning}</Content>
       <Button onClick={() => onOpen()}>AI에게 투자 전략 조언 받기</Button>
-      <ResearchModal open={open} onClose={onClose} />
+      <ResearchModal open={open} onClose={onClose} content={feedback} />
     </>
   )
 }
@@ -174,7 +179,7 @@ const FeedBack = ({ data }) => {
           <div className="w-[80px] text-center">현재 호가</div>
           <div className="w-[150px] text-center">총 금액 변동</div>
         </div>
-        {data.meta.map(({ type, kind, before_price, now_price, changed }) => (
+        {mockList2.map(({ type, kind, before_price, now_price, changed }) => (
           <div
             className={classNames(
               'w-full flex items-center py-2 border rounded-md',
@@ -235,7 +240,7 @@ const Button = ({ children, onClick }) => {
   )
 }
 
-const ResearchModal = ({ open, onClose }) => {
+const ResearchModal = ({ open, onClose, content }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
@@ -244,10 +249,7 @@ const ResearchModal = ({ open, onClose }) => {
         </h3>
 
         <p className="text-[#343434] text-[16px] pb-6 px-6">
-          우선 투자 근거의 경우, 대선을 판단 근거로 삼는 투자는 꽤 위험한 투자가
-          될 수 있습니다. 투자 전략의 경우 나스닥을 롱을 헷징하기 위해서 코스피
-          숏을 잡았는데 이머징 마켓이 강해질 경우에 헷징 효과가 감소될 수
-          있습니다. 좀 더 안전한 헷징 방법을 강구하시는 걸 추천드립니다!
+          {content ? content.response : '로딩중...'}
         </p>
 
         <button

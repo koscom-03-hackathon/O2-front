@@ -11,6 +11,10 @@ import { CreatePage } from './pages/dairy/create'
 import { EditPage } from './pages/dairy/edit'
 // import { MentorPage } from './pages/mentor'
 
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,8 +42,16 @@ const router = createBrowserRouter([
   // },
 ])
 
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: 0 } },
+})
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <RouterProvider router={router} />
+      </LocalizationProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )
