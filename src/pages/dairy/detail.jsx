@@ -134,11 +134,11 @@ const Strategy = ({ data }) => {
       <div className="py-[16px] px-[32px] shadow-sm bg-white rounded-[10px] mb-[32px] space-y-2">
         <div className="w-full flex items-center">
           <div className="w-[80px]"></div>
-          <div className="flex-1">투자 종목</div>
-          <div className="w-[110px] text-center">호가</div>
-          <div className="w-[80px] text-center">수량</div>
-          <div className="w-[150px] text-center">총 금액</div>
-          <div className="w-[60px] text-center">수익률</div>
+          <div className="flex-1" style={{fontFamily: "One"}}>투자 종목</div>
+          <div className="w-[110px] text-center" style={{fontFamily: "One"}}>체결가</div>
+          <div className="w-[80px] text-center" style={{fontFamily: "One"}}>수량</div>
+          <div className="w-[150px] text-center" style={{fontFamily: "One"}}>총 금액</div>
+          <div className="w-[60px] text-center" style={{fontFamily: "One"}}>수익률</div>
         </div>
         {mockList.map(({ type, kind, price, amount, totalPrice, RoR }) => (
           <div
@@ -150,9 +150,9 @@ const Strategy = ({ data }) => {
           >
             <div className="w-[80px] text-center">{type}</div>
             <div className="flex-1">{kind}</div>
-            <div className="w-[110px] text-center">{price}</div>
-            <div className="w-[80px] text-center">{amount}</div>
-            <div className="w-[150px] text-center">{totalPrice}</div>
+            <div className="w-[110px] text-center">{price.toLocaleString()}</div>
+            <div className="w-[80px] text-center">{amount.toLocaleString()}</div>
+            <div className="w-[150px] text-center">{totalPrice.toLocaleString()}</div>
             <div className="w-[60px] text-center">{RoR}</div>
           </div>
         ))}
@@ -244,7 +244,7 @@ const ResearchModal = ({ open, onClose, content }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
-        <h3 className="text-[22px] text-[#121212] pb-4">
+        <h3 className="text-[22px] text-[#121212] pb-4" fontFamily="One" >
           투자 전략 AI 분석 결과
         </h3>
 
