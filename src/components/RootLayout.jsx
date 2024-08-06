@@ -1,10 +1,12 @@
 import ArticleIcon from '@mui/icons-material/Article'
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline'
-import { useMatch, useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { classNames } from '../utils/classNames'
 
 export const RootLayout = ({ children }) => {
-  const isChart = useMatch('/chart')
+  const location = useLocation()
+  const isChart = location.pathname === '/chart'
+  console.log(isChart)
   const navigate = useNavigate()
 
   return (
@@ -26,7 +28,7 @@ export const RootLayout = ({ children }) => {
           </button>
           <button
             className={classNames(
-              'w-[240px] h-[56px] p-4 text-left bg-white rounded-[10px] text-[18px] flex items-center justify-start',
+              'w-[240px] h-[56px] p-4 text-left rounded-[10px] text-[18px] flex items-center justify-start',
               isChart ? 'bg-white' : 'bg-[#F5F5F5]'
             )}
             onClick={() => {

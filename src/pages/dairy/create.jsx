@@ -2,6 +2,7 @@ import { RootLayout } from '../../components/RootLayout'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import TransitionsModal from '../../components/common/Modal'
 
 export const CreatePage = () => {
   const { type } = useParams()
@@ -45,6 +46,10 @@ const Header = ({ type }) => {
 }
 
 const Content = ({ type }) => {
+  const [open, setOpen] = useState(false)
+  const onClose = () => setOpen(false)
+  const onOpen = () => setOpen(true)
+
   const [data, setData] = useState({
     date: '2024-07-05',
     title: '',
@@ -55,7 +60,9 @@ const Content = ({ type }) => {
     feedback: '',
   })
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    onOpen()
+  }
 
   return (
     <div className="m-auto w-[788px] pt-[48px]">
@@ -66,6 +73,7 @@ const Content = ({ type }) => {
       ) : (
         <Free data={data} setData={setData} onSubmit={onSubmit} />
       )}
+      <ConfirmModal open={open} onClose={onClose} />
     </div>
   )
 }
@@ -106,7 +114,7 @@ const Strategy = ({ data, setData, onSubmit }) => {
           placeholder="투자 근거를 입력하세요"
         />
       </div>
-      <Button onSubmit={onSubmit}>저장하기</Button>
+      <Button onClick={onSubmit}>저장하기</Button>
     </div>
   )
 }
@@ -136,7 +144,7 @@ const FeedBack = ({ data, setData, onSubmit }) => {
           placeholder="투자 피드백을 입력하세요"
         />
       </div>
-      <Button onSubmit={onSubmit}>저장하기</Button>
+      <Button onClick={onSubmit}>저장하기</Button>
     </div>
   )
 }
@@ -166,7 +174,7 @@ const Free = ({ data, setData, onSubmit }) => {
           placeholder="내용을 입력하세요"
         />
       </div>
-      <Button onSubmit={onSubmit}>저장하기</Button>
+      <Button onClick={onSubmit}>저장하기</Button>
     </div>
   )
 }
@@ -187,5 +195,24 @@ const Button = ({ children, onClick }) => {
     >
       {children}
     </button>
+  )
+}
+
+const ConfirmModal = ({ open, onClose }) => {
+  return (
+    <TransitionsModal open={open} onClose={onClose}>
+      <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
+        <h3 className="text-[22px] text-[#121212] pb-4">
+          일기가 생성되었습니다!
+        </h3>
+
+        <button
+          className="w-[108px] h-[36px] border border-[#ED6D1D] rounded-lg bg-white flex items-center justify-center cursor-pointer"
+          onClick={onClose}
+        >
+          <span className="ml-1 text-[#ED6D1D]">확인</span>
+        </button>
+      </div>
+    </TransitionsModal>
   )
 }
