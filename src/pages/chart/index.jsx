@@ -154,7 +154,7 @@ export const ChartIndexPage = () => {
               fontFamily="One"
               padding="20px"
             >
-              나의 투자 목록
+              나의 투자 로그
             </Typography>
             <div className="grid grid-cols-2 gap-2">
               {investments.map((investment) => (
