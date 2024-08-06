@@ -47,8 +47,6 @@ export const DetailPage = () => {
     queryFn: () => getDiaryDetail(diaryId),
   })
 
-  console.log(data)
-
   if (isLoading) {
     return <RootLayout />
   }
