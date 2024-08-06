@@ -214,7 +214,7 @@ const Strategy = ({ data }) => {
             <div className="w-[150px] text-center">
               {totalPrice.toLocaleString()}
             </div>
-            <div className="w-[60px] text-center">{RoR}</div>
+            <div className="w-[60px] text-center">{RoR}%</div>
           </div>
         ))}
       </div>
@@ -364,10 +364,12 @@ const ResearchModal = ({ open, onClose, content, type }) => {
 
 const DeleteModal = ({ open, onClose }) => {
   const { diaryId } = useParams()
+  const navigate = useNavigate()
 
   const onDelete = async () => {
     await deleteDiary(diaryId)
     onClose()
+    navigate(-1, { replace: true })
   }
 
   return (

@@ -64,8 +64,9 @@ export default function IndexPage() {
         {/* 리스트 내용물*/}
         <div className="py-[10px] space-y-[14px] flex flex-col w-full">
           {!isLoading &&
-            data.map(
-              ({ id, date, title, type, content, strategy, feedback }) => (
+            data
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map(({ id, date, title, type, content, strategy, feedback }) => (
                 <ListCard
                   key={id}
                   id={id}
@@ -74,8 +75,7 @@ export default function IndexPage() {
                   content={strategy || feedback || content || ''}
                   type={type}
                 ></ListCard>
-              )
-            )}
+              ))}
         </div>
         <CreateDiaryModal open={open} onClose={onClose}></CreateDiaryModal>
       </div>
@@ -86,7 +86,10 @@ export default function IndexPage() {
 const Header = () => {
   return (
     <header className="h-[68px] flex items-center justify-center border-b border-[#D3D3D3]">
-      <h1 className="text-[30px] text-[#ED6D1D] font" style={{fontFamily: 'Jalnan'}} >
+      <h1
+        className="text-[30px] text-[#ED6D1D] font"
+        style={{ fontFamily: 'Jalnan' }}
+      >
         O2 - 오늘의 투자일기
       </h1>
     </header>
