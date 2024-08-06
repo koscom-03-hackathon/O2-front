@@ -15,14 +15,12 @@ export const EditPage = () => {
     queryFn: () => getDiaryDetail(diaryId),
   })
 
-  // 데이터 불러오기...
-
   return (
     <RootLayout>
       {!isLoading ? (
         <>
           <Header type={data.type} />
-          <Content data={data} refetch={refetch} />
+          <Content data={data} refetch={refetch} diaryId={diaryId} />
         </>
       ) : (
         <></>
@@ -57,7 +55,7 @@ const Header = ({ type }) => {
   )
 }
 
-const Content = ({ data: beforeData, refetch }) => {
+const Content = ({ data: beforeData, refetch, diaryId }) => {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const onClose = () => {
@@ -77,7 +75,7 @@ const Content = ({ data: beforeData, refetch }) => {
   })
 
   const onSubmit = async () => {
-    await updateDiary(data)
+    await updateDiary({ ...data, id: diaryId })
     await refetch()
     onOpen()
   }
