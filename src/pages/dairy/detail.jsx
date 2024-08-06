@@ -7,7 +7,12 @@ import { classNames } from '../../utils/classNames'
 import TransitionsModal from '../../components/common/Modal'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getDiaryDetail, getAIFeedback } from '../../apis/index'
+import {
+  getDiaryDetail,
+  getAIFeedback,
+  getAIStrategy,
+  deleteDiary,
+} from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
 
 const mockList = [
@@ -125,7 +130,7 @@ const Strategy = ({ data }) => {
 
   const { data: feedback } = useQuery({
     queryKey: ['diary'],
-    queryFn: () => getAIFeedback(),
+    queryFn: () => getAIStrategy(),
   })
 
   return (
@@ -168,6 +173,15 @@ const Strategy = ({ data }) => {
 }
 
 const FeedBack = ({ data }) => {
+  const [open, setOpen] = useState(false)
+  const onClose = () => setOpen(false)
+  const onOpen = () => setOpen(true)
+
+  const { data: feedback } = useQuery({
+    queryKey: ['diary'],
+    queryFn: () => getAIFeedback(),
+  })
+
   return (
     <>
       <Title>매매 결과</Title>
@@ -197,6 +211,8 @@ const FeedBack = ({ data }) => {
       </div>
       <Title>투자 피드백</Title>
       <Content>{data.feedback}</Content>
+      <Button onClick={() => onOpen()}>AI에게 피드백 받아보기</Button>
+      <ResearchModal open={open} onClose={onClose} content={feedback} />
     </>
   )
 }
@@ -264,6 +280,13 @@ const ResearchModal = ({ open, onClose, content }) => {
 }
 
 const DeleteModal = ({ open, onClose }) => {
+  const { diaryId } = useParams()
+
+  const onDelete = async () => {
+    await deleteDiary(diaryId)
+    onClose()
+  }
+
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
@@ -285,7 +308,7 @@ const DeleteModal = ({ open, onClose }) => {
           </button>
           <button
             className="w-[108px] h-[36px] border border-[#ED6D1D] rounded-lg bg-white flex items-center justify-center cursor-pointer"
-            onClick={onClose}
+            onClick={onDelete}
           >
             <span className="ml-1 text-[#ED6D1D]">삭제</span>
           </button>
