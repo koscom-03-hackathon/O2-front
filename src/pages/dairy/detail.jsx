@@ -14,7 +14,6 @@ import {
   deleteDiary,
 } from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
-import React from 'react'
 import Chip from '@mui/material/Chip'
 
 const RefineAIFeedback = ({ children }) => {
@@ -43,7 +42,7 @@ const RefineAIFeedback = ({ children }) => {
   }
 
   return (
-    <div className="min-h-[130px] pt-[28px] px-[32px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[700px] overflow-scroll">
+    <div className="min-h-[130px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[300px] overflow-scroll">
       {sections.map((section, index) => (
         <div key={index} style={{ padding: 10 }}>
           <Chip label={section.title} color="primary" />
@@ -164,12 +163,14 @@ const Header = ({ title, date, type, onOpen }) => {
 }
 
 const Strategy = ({ data }) => {
+  const { diaryId } = useParams()
+
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
   const { data: feedback } = useQuery({
-    queryKey: ['diary'],
+    queryKey: ['diary', diaryId, 'AI'],
     queryFn: () => getAIStrategy(),
   })
 
@@ -234,12 +235,14 @@ const Strategy = ({ data }) => {
 }
 
 const FeedBack = ({ data }) => {
+  const { diaryId } = useParams()
+
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
   const { data: feedback } = useQuery({
-    queryKey: ['diary'],
+    queryKey: ['diary', diaryId, 'AI'],
     queryFn: () => getAIFeedback(),
   })
 
@@ -331,16 +334,17 @@ const Button = ({ children, onClick }) => {
 }
 
 const ResearchModal = ({ open, onClose, content, type }) => {
+  console.log(content)
   return (
     <TransitionsModal open={open} onClose={onClose}>
-      <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
+      <div className="py-8 px-8 w-[800px] bg-white rounded-lg flex flex-col items-center">
         <h3 className="text-[22px] text-[#121212] pb-4" fontFamily="One">
           {type === 'strategy'
             ? '투자 전략 AI 분석 결과'
             : 'AI 피드백 받아보기'}
         </h3>
 
-        <p className="text-[#343434] text-[16px] pb-6 px-6">
+        <p className="text-[#343434] text-[16px]">
           {content ? (
             <RefineAIFeedback>{content.response}</RefineAIFeedback>
           ) : (
