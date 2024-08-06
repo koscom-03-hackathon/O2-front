@@ -3,6 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Edit } from '../../components/common/Edit'
+import dayjs from 'dayjs'
 
 export const CreatePage = () => {
   const { type } = useParams()
@@ -51,7 +52,7 @@ const Content = ({ type }) => {
   const onOpen = () => setOpen(true)
 
   const [data, setData] = useState({
-    date: '2024-07-05',
+    date: dayjs().format('YYYY-MM-DD'),
     title: '',
     content: '',
     type,
@@ -59,6 +60,8 @@ const Content = ({ type }) => {
     reasoning: '',
     feedback: '',
   })
+
+  console.log(data)
 
   const onSubmit = () => {
     onOpen()

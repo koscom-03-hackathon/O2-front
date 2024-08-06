@@ -2,7 +2,7 @@ import TransitionsModal from '../../components/common/Modal'
 import dayjs from 'dayjs'
 import { DatePicker } from '@mui/x-date-pickers'
 
-export const Edit = ({ data, setData, onSubmit, open, onClose }) => {
+export const Edit = ({ data, setData, onSubmit, open, onClose, type }) => {
   return (
     <div className="m-auto w-[788px] pt-[48px]">
       {data.type === 'strategy' ? (
@@ -12,7 +12,7 @@ export const Edit = ({ data, setData, onSubmit, open, onClose }) => {
       ) : (
         <Free data={data} setData={setData} onSubmit={onSubmit} />
       )}
-      <ConfirmModal open={open} onClose={onClose} />
+      <ConfirmModal open={open} onClose={onClose} type={type} />
     </div>
   )
 }
@@ -26,6 +26,12 @@ const Strategy = ({ data, setData, onSubmit }) => {
           sx={{
             color: '#343434',
             backgroundColor: '#FFFFFF',
+          }}
+          onChange={(newDate) => {
+            setData((data) => ({
+              ...data,
+              date: dayjs(newDate).format('YYYY-MM-DD'),
+            }))
           }}
         />
       </div>
@@ -77,6 +83,12 @@ const FeedBack = ({ data, setData, onSubmit }) => {
             color: '#343434',
             backgroundColor: '#FFFFFF',
           }}
+          onChange={(newDate) => {
+            setData((data) => ({
+              ...data,
+              date: dayjs(newDate).format('YYYY-MM-DD'),
+            }))
+          }}
         />
       </div>
       <div>
@@ -115,6 +127,12 @@ const Free = ({ data, setData, onSubmit }) => {
           sx={{
             color: '#343434',
             backgroundColor: '#FFFFFF',
+          }}
+          onChange={(newDate) => {
+            setData((data) => ({
+              ...data,
+              date: dayjs(newDate).format('YYYY-MM-DD'),
+            }))
           }}
         />
       </div>
@@ -164,12 +182,14 @@ const Button = ({ children, onClick }) => {
   )
 }
 
-const ConfirmModal = ({ open, onClose }) => {
+const ConfirmModal = ({ open, onClose, type }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
         <h3 className="text-[22px] text-[#121212] pb-4">
-          일기가 수정되었습니다!
+          {type === 'create'
+            ? '일기가 생성되었습니다'
+            : '일기가 수정되었습니다!'}
         </h3>
 
         <button
