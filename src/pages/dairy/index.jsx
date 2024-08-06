@@ -1,16 +1,32 @@
 import { RootLayout } from '../../components/RootLayout'
 import AddIcon from '@mui/icons-material/Add'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import TransitionsModal from '../../components/common/Modal'
 import BallotIcon from '@mui/icons-material/Ballot'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import CommentIcon from '@mui/icons-material/Comment'
+import dayjs from 'dayjs'
 
 export default function IndexPage() {
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
+  // 현재 날짜를 YYYY-MM 형식으로 초기화
+  const [date, setDate] = useState(dayjs().format('YYYY-MM'))
+
+  // 한 달 더하는 함수
+  const addMonth = () => {
+    setDate((prevDate) => dayjs(prevDate).add(1, 'month').format('YYYY-MM'))
+  }
+
+  // 한 달 빼는 함수
+  const subtractMonth = () => {
+    setDate((prevDate) =>
+      dayjs(prevDate).subtract(1, 'month').format('YYYY-MM')
+    )
+  }
 
   return (
     <RootLayout>
@@ -19,11 +35,13 @@ export default function IndexPage() {
         {/* 리스트 정보 불러오기 부분 */}
         <div className="flex items-center justify-between">
           {/* 월 선택 뷰 */}
-          <div className="flex items-center">
-            <span className="text-[#121212] text-[24px] font-bold mr-[14px]">
-              2024.07
-            </span>
-            <CalendarMonthIcon />
+          <div className="flex justify-between items-center w-[180px]">
+            <ChevronLeftIcon
+              onClick={subtractMonth}
+              sx={{ cursor: 'pointer' }}
+            />
+            <span className="text-[#121212] text-[24px] font-bold">{date}</span>
+            <ChevronRightIcon onClick={addMonth} sx={{ cursor: 'pointer' }} />
           </div>
           {/* 새 일기 생성 버튼 */}
           <button
