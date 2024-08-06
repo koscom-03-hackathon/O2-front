@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const client = axios.create({
-  baseURL: 'http://121.141.60.242:8081',
+  baseURL: 'http://root-backend-1:8080',
   headers: {
     'Content-Type': `application/json`,
   },
@@ -30,3 +30,6 @@ export const deleteDiary = (id) =>
   })
 
 export const updateDiary = ({ data }) => client.post('/diary/update', data)
+
+export const getAIFeedback = () =>
+  client.get('/diary/strategy/openai?userId=qwer1234').then(({ data }) => data)

@@ -7,7 +7,7 @@ import { classNames } from '../../utils/classNames'
 import TransitionsModal from '../../components/common/Modal'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getDiaryDetail } from '../../apis/index'
+import { getDiaryDetail, getAIFeedback } from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
 
 const mockList = [
@@ -123,6 +123,11 @@ const Strategy = ({ data }) => {
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
 
+  const { data: feedback } = useQuery({
+    queryKey: ['diary'],
+    queryFn: () => getAIFeedback(),
+  })
+
   return (
     <>
       <Title>매매 현황</Title>
@@ -157,7 +162,7 @@ const Strategy = ({ data }) => {
       <Title>투자 근거</Title>
       <Content>{data.reasoning}</Content>
       <Button onClick={() => onOpen()}>AI에게 투자 전략 조언 받기</Button>
-      <ResearchModal open={open} onClose={onClose} />
+      <ResearchModal open={open} onClose={onClose} content={feedback} />
     </>
   )
 }
@@ -235,7 +240,7 @@ const Button = ({ children, onClick }) => {
   )
 }
 
-const ResearchModal = ({ open, onClose }) => {
+const ResearchModal = ({ open, onClose, content }) => {
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[500px] bg-white rounded-lg flex flex-col items-center">
@@ -244,10 +249,7 @@ const ResearchModal = ({ open, onClose }) => {
         </h3>
 
         <p className="text-[#343434] text-[16px] pb-6 px-6">
-          우선 투자 근거의 경우, 대선을 판단 근거로 삼는 투자는 꽤 위험한 투자가
-          될 수 있습니다. 투자 전략의 경우 나스닥을 롱을 헷징하기 위해서 코스피
-          숏을 잡았는데 이머징 마켓이 강해질 경우에 헷징 효과가 감소될 수
-          있습니다. 좀 더 안전한 헷징 방법을 강구하시는 걸 추천드립니다!
+          {content ? content.response : '로딩중...'}
         </p>
 
         <button
