@@ -2,14 +2,17 @@ import { RootLayout } from '../../components/RootLayout'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Box, Card, Typography, Grid, Chip } from '@mui/material';
 
-
+const investments = [
+  { id: 1, date: "2024.08.15", name: "코스피선물인버스x2", volume: 100, price: 5200, totalPrice: 5200000, type: "매수" },
+  { id: 2, date: "2024.08.01", name: "코스피선물인버스x2", volume: 100, price: 5200, totalPrice: 5200000,  type: "매도"  },
+  { id: 3, date: "2024.07.01", name: "LG전자", volume: 100, price: 5200, totalPrice: 5200000, type: "매수" },
+  { id: 4, date: "2024.07.01", name: "LG전자", volume: 100, price: 5200, totalPrice: 5200000, type: "매도" },
+];
 
 
 export const ChartIndexPage = () => {
@@ -39,7 +42,7 @@ export const ChartIndexPage = () => {
                 height: '100%',
               }}
             >
-              <Typography variant="h6" component="div" fontFamily="One" padding="20px">
+              <Typography variant="h5" component="div" fontFamily="One" padding="20px">
                 나의 투자 현황
               </Typography>
               <PieChart
@@ -56,6 +59,9 @@ export const ChartIndexPage = () => {
                     cy: 150,
                     highlightScope: { faded: 'global', highlighted: 'item' },
                     faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                    label: {
+                      fontFamily: 'One',
+                    },
                   },
                 ]}
                 height={300}
@@ -75,8 +81,8 @@ export const ChartIndexPage = () => {
                 height: '100%',
               }}
             >
-              <Typography variant="h6" component="div" fontFamily="One" padding="20px">
-                투자 목록
+              <Typography variant="h5" component="div" fontFamily="One" padding="20px">
+                수익률 현황
               </Typography>
               <LineChart
                 xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
@@ -94,8 +100,8 @@ export const ChartIndexPage = () => {
       <div className="flex w-full">
         <Box sx={{ flex: 1, padding: 1 }}>
           <Card variant="outlined">
-            <Typography variant="h6" component="div" fontFamily="One" padding="20px">
-              수익률 현황
+            <Typography variant="h5" component="div" fontFamily="One" padding="20px">
+              나의 투자 목록
             </Typography>
             <Box
               sx={{
@@ -106,15 +112,37 @@ export const ChartIndexPage = () => {
                 height: '100%',
               }}
             >
-              <LineChart
-                xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-                series={[
-                  {
-                    data: [2, 5.5, 2, 8.5, 1.5, 5],
-                  },
-                ]}
-                height={400}
-              />
+              <Box sx={{ height: 500, overflow: 'auto' }}>
+                <Grid container spacing={2} sx={{ cursor: 'pointer' }}>
+                  {investments.map((investment) => (
+                    <Grid item xs={12} sm={12} md={6} xl={12} key={investment.id}>
+                      <Card onClick={() => handleItemClick(investment)} sx={{ padding: '20px' }}>
+                        <Typography variant="h6" fontFamily="Jalnan" fontWeight={500}>
+                          {investment.name}
+                        </Typography>
+                        <Typography variant="body1" fontFamily="One">
+                          {investment.date}
+                        </Typography>
+                        <Typography variant="body2">
+                          {investment.volume} 주 * {investment.price} 원 = {investment.totalPrice} 원
+                        </Typography>
+                        <Chip
+                          label={investment.type}
+                          color={investment.type === '매수' ? 'primary' : 'warning'}
+                          sx={{
+                            display: 'inline-flex',
+                            whiteSpace: 'nowrap',
+                            height: 'auto',
+                            minWidth: '10px',
+                            fontFamily: 'One',
+                          }}
+                        />
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+              
             </Box>
           </Card>
         </Box>
