@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Jalnan';
+    src: url('../public/font/JalnanGothicTTF.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'One';
+    src: url('../public/font/ONEMobileTitle.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Locus';
+    src: url('../public/font/locus_sangsang.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

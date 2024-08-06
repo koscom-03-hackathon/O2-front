@@ -13,6 +13,7 @@ export const RootLayout = ({ children }) => {
       {/* ToolBar */}
       <div className="h-full w-[280px] bg-[#EFEFEF] min-h-screen sticky top-0">
         <div className="pt-24 flex flex-col justify-center items-center space-y-[16px]">
+          <img src="/img/logo_horizontal-remove.png" alt="logo" />
           <button
             className={classNames(
               'w-[240px] h-[56px] p-4 text-left rounded-[10px] text-[18px] flex items-center justify-start',
@@ -23,7 +24,7 @@ export const RootLayout = ({ children }) => {
             }}
           >
             <ArticleIcon />
-            <span className="ml-3">투자일기</span>
+            <span className="ml-3 text-[20px]" style={{fontFamily: "Jalnan"}}>투자일기</span>
           </button>
           <button
             className={classNames(
@@ -35,7 +36,7 @@ export const RootLayout = ({ children }) => {
             }}
           >
             <PieChartOutlineIcon />
-            <span className="ml-3">포트폴리오</span>
+            <span className="ml-3 text-[20px]" style={{fontFamily: "Jalnan"}}>포트폴리오</span>
           </button>
         </div>
       </div>
