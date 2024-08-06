@@ -2,12 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import IndexPage from './pages/dairy/index'
+import './Font.css';
 
 import './index.css'
 import { ChartIndexPage } from './pages/chart'
 import { DetailPage } from './pages/dairy/detail'
 import { CreatePage } from './pages/dairy/create'
 import { EditPage } from './pages/dairy/edit'
+// import { MentorPage } from './pages/mentor'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
     path: '/chart',
     element: <ChartIndexPage />,
   },
+  // {
+  //   path: '/mentor',
+  //   element: <MentorPage />,
+  // },
 ])
 
 const queryClient = new QueryClient({
