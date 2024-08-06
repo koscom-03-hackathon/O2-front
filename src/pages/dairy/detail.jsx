@@ -2,7 +2,7 @@ import { RootLayout } from '../../components/RootLayout'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { classNames } from '../../utils/classNames'
 import TransitionsModal from '../../components/common/Modal'
 import { useState } from 'react'
@@ -85,6 +85,7 @@ export const DetailPage = () => {
 
 const Header = ({ title, date, type, onOpen }) => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <header className="h-[68px] flex items-center justify-center border-b border-[#D3D3D3]">
@@ -103,6 +104,9 @@ const Header = ({ title, date, type, onOpen }) => {
         <EditIcon
           className="mr-4"
           sx={{ fontSize: '30px', cursor: 'pointer' }}
+          onClick={() => {
+            navigate(location.pathname + '/edit')
+          }}
         />
         <DeleteIcon
           fontSize="medium"
