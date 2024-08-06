@@ -6,7 +6,6 @@ import { classNames } from '../utils/classNames'
 export const RootLayout = ({ children }) => {
   const location = useLocation()
   const isChart = location.pathname === '/chart'
-  console.log(isChart)
   const navigate = useNavigate()
 
   return (
