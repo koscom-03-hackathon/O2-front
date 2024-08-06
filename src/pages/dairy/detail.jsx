@@ -11,8 +11,9 @@ const mockData = {
   type: '투자전략',
   title: 'QQQ 롱, 국장 숏',
   date: '2024.07.03',
-  content:
-    'QQQ는 미 대선 이슈로 국장 대비 아웃퍼폼할 것이라고 생각함.\n 그리고 전반적으로 주식 시장이 상승할 것이라고 생각해서 기존에 헷징했던 코스피 200 선물을 매도함.',
+  strategy:
+    '전반적으로 주식 시장이 상승할 것이라고 생각해서 기존에 헷징했던 코스피 200 선물을 매도함.',
+  reasoning: 'QQQ는 미 대선 이슈로 국장 대비 아웃퍼폼할 것이라고 생각함.',
   meta: [
     {
       type: '매수',
@@ -37,7 +38,7 @@ const mockData = {
 //   type: '전략피드백',
 //   title: '헷징은 필수다.',
 //   date: '2024.07.05',
-//   content:
+//   feedback:
 //     '헷징을 안하면 안되는구나... 주식 시장이 괜찮아보인다고 헷징을 풀면 하락장에서 골로 간다는걸 배웠음',
 //   meta: [
 //     {
@@ -58,7 +59,7 @@ const mockData = {
 // }
 
 export const DetailPage = () => {
-  const { type, title, date, content, meta } = mockData
+  const { type, title, date } = mockData
 
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
@@ -70,11 +71,11 @@ export const DetailPage = () => {
       {/* 내용물 구현 */}
       <div className="m-auto w-[788px] pt-[48px]">
         {type === '투자전략' ? (
-          <Strategy content={content} meta={meta} />
+          <Strategy data={mockData} />
         ) : type === '전략피드백' ? (
-          <FeedBack content={content} meta={meta} />
+          <FeedBack data={mockData} />
         ) : (
-          <Free content={content} />
+          <Free data={mockData} />
         )}
       </div>
       <DeleteModal open={open} onClose={onClose} />
@@ -113,7 +114,7 @@ const Header = ({ title, date, type, onOpen }) => {
   )
 }
 
-const Strategy = ({ meta, content }) => {
+const Strategy = ({ data }) => {
   const [open, setOpen] = useState(false)
   const onClose = () => setOpen(false)
   const onOpen = () => setOpen(true)
@@ -130,7 +131,7 @@ const Strategy = ({ meta, content }) => {
           <div className="w-[150px] text-center">총 금액</div>
           <div className="w-[60px] text-center">수익률</div>
         </div>
-        {meta.map(({ type, kind, price, amount, totalPrice, RoR }) => (
+        {data.meta.map(({ type, kind, price, amount, totalPrice, RoR }) => (
           <div
             className={classNames(
               'w-full flex items-center py-2 border rounded-md',
@@ -147,15 +148,17 @@ const Strategy = ({ meta, content }) => {
           </div>
         ))}
       </div>
-      <Title>투자 전략 및 근거</Title>
-      <Content>{content}</Content>
+      <Title>투자 전략</Title>
+      <Content>{data.strategy}</Content>
+      <Title>투자 근거</Title>
+      <Content>{data.reasoning}</Content>
       <Button onClick={() => onOpen()}>AI에게 투자 전략 조언 받기</Button>
       <ResearchModal open={open} onClose={onClose} />
     </>
   )
 }
 
-const FeedBack = ({ meta, content }) => {
+const FeedBack = ({ data }) => {
   return (
     <>
       <Title>매매 결과</Title>
@@ -167,7 +170,7 @@ const FeedBack = ({ meta, content }) => {
           <div className="w-[80px] text-center">현재 호가</div>
           <div className="w-[150px] text-center">총 금액 변동</div>
         </div>
-        {meta.map(({ type, kind, before_price, now_price, changed }) => (
+        {data.meta.map(({ type, kind, before_price, now_price, changed }) => (
           <div
             className={classNames(
               'w-full flex items-center py-2 border rounded-md',
@@ -184,16 +187,16 @@ const FeedBack = ({ meta, content }) => {
         ))}
       </div>
       <Title>투자 피드백</Title>
-      <Content>{content}</Content>
+      <Content>{data.feedback}</Content>
     </>
   )
 }
 
-const Free = ({ content }) => {
+const Free = ({ data }) => {
   return (
     <>
       <Title>내용</Title>
-      <Content>{content}</Content>
+      <Content>{data.content}</Content>
     </>
   )
 }
@@ -201,10 +204,10 @@ const Free = ({ content }) => {
 const Title = ({ children }) => {
   return (
     <div className="mb-3">
-      <h2 className={classNames('text-[24px] font-bold text-[#121212]')}>
+      <h2 className={classNames('text-[22px] font-bold text-[#121212]')}>
         {children}
       </h2>
-      <span className="relative top-[-3px] block w-11 h-1 bg-[#EB6D1D]"></span>
+      <span className="relative top-[-1px] block w-11 h-1 bg-[#EB6D1D]"></span>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import IndexPage from './pages/dairy/index'
 import './index.css'
 import { ChartIndexPage } from './pages/chart'
 import { DetailPage } from './pages/dairy/detail'
+import { CreatePage } from './pages/dairy/create'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/diary/:diaryId',
     element: <DetailPage />,
+  },
+  {
+    path: '/diary/new/:type',
+    element: <CreatePage />,
   },
   {
     path: '/chart',

@@ -115,7 +115,7 @@ const CreateDiaryModal = ({ open, onClose }) => {
 
         <div className="space-x-2 p-2 flex items-center justify-center pb-6">
           <div
-            className="w-[120px] h-[120px] border border-[#ED6D1D] rounded-lg flex flex-col justify-center items-center"
+            className="w-[120px] h-[120px] border border-[#ED6D1D] rounded-lg flex flex-col justify-center items-center cursor-pointer"
             onClick={() => {
               MoveNewDiary('투자전략')
             }}
