@@ -1,6 +1,7 @@
 import TransitionsModal from '../../components/common/Modal'
 import dayjs from 'dayjs'
 import { DatePicker } from '@mui/x-date-pickers'
+import { ChangeBox } from './ChangeBox'
 
 export const Edit = ({ data, setData, onSubmit, open, onClose, type }) => {
   return (
@@ -55,6 +56,10 @@ const Strategy = ({ data, setData, onSubmit, type }) => {
           className="py-1.5 px-3 border border-[#898989] text-base bg-white w-full rounded-lg text-[#343434] outline-neutral-400"
           placeholder="제목을 입력하세요"
         />
+      </div>
+      <div>
+        <Title>매매현황</Title>
+        <ChangeBox date={data.date} />
       </div>
       <div>
         <Title>투자전략</Title>

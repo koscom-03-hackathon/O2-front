@@ -15,62 +15,8 @@ import {
 } from '../../apis/index'
 import { getTypeText } from '../../utils/getTypeText'
 import Chip from '@mui/material/Chip'
-
-const RefineAIFeedback = ({ children }) => {
-  const content = children.split('\n')
-  const sections = []
-  let currentSection = null
-
-  content.forEach((line) => {
-    line = line.trimStart()
-    if (line.startsWith('### ')) {
-      if (currentSection) {
-        sections.push(currentSection)
-      }
-      currentSection = {
-        title: line.trimStart().replace('### ', ''),
-        content: [],
-      }
-    } else if (currentSection) {
-      // line = line.replace(/\#\#\#/g, '');
-      currentSection.content.push(line.replace(/\*\*/g, ''))
-    }
-  })
-
-  if (currentSection) {
-    sections.push(currentSection)
-  }
-
-  return (
-    <div className="min-h-[130px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[300px] overflow-scroll">
-      {sections.map((section, index) => (
-        <div key={index} style={{ padding: 10 }}>
-          <Chip label={section.title} color="primary" />
-          <p style={{ margin: 5 }}>{section.content.join('\n')}</p>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-const mockList = [
-  {
-    type: '매수',
-    kind: 'QQQ',
-    price: 20000,
-    amount: 100,
-    totalPrice: 2000000,
-    RoR: 8,
-  },
-  {
-    type: '매도',
-    kind: '코스피200 선물 인버스 x2',
-    price: 2000,
-    amount: 1000,
-    totalPrice: 2000000,
-    RoR: -8,
-  },
-]
+import { ChangeBox } from '../../components/common/ChangeBox'
+import dayjs from 'dayjs'
 
 const mockList2 = [
   {
@@ -100,6 +46,8 @@ export const DetailPage = () => {
     queryKey: ['diary', diaryId],
     queryFn: () => getDiaryDetail(diaryId),
   })
+
+  console.log(data)
 
   if (isLoading) {
     return <RootLayout />
@@ -177,48 +125,7 @@ const Strategy = ({ data }) => {
   return (
     <>
       <Title>매매 현황</Title>
-      <div className="py-[16px] px-[32px] shadow-sm bg-white rounded-[10px] mb-[32px] space-y-2">
-        <div className="w-full flex items-center">
-          <div className="w-[80px]"></div>
-          <div className="flex-1" style={{ fontFamily: 'One' }}>
-            투자 종목
-          </div>
-          <div className="w-[110px] text-center" style={{ fontFamily: 'One' }}>
-            체결가
-          </div>
-          <div className="w-[80px] text-center" style={{ fontFamily: 'One' }}>
-            수량
-          </div>
-          <div className="w-[150px] text-center" style={{ fontFamily: 'One' }}>
-            총 금액
-          </div>
-          <div className="w-[60px] text-center" style={{ fontFamily: 'One' }}>
-            수익률
-          </div>
-        </div>
-        {mockList.map(({ type, kind, price, amount, totalPrice, RoR }) => (
-          <div
-            className={classNames(
-              'w-full flex items-center py-2 border rounded-md',
-              type === '매수' ? 'border-red-500' : 'border-blue-500'
-            )}
-            key={kind}
-          >
-            <div className="w-[80px] text-center">{type}</div>
-            <div className="flex-1">{kind}</div>
-            <div className="w-[110px] text-center">
-              {price.toLocaleString()}
-            </div>
-            <div className="w-[80px] text-center">
-              {amount.toLocaleString()}
-            </div>
-            <div className="w-[150px] text-center">
-              {totalPrice.toLocaleString()}
-            </div>
-            <div className="w-[60px] text-center">{RoR}%</div>
-          </div>
-        ))}
-      </div>
+      <ChangeBox date={dayjs().format('YYYY-MM-DD')} />
       <Title>투자 전략</Title>
       <Content>{data.strategy}</Content>
       <Title>투자 근거</Title>
@@ -404,5 +311,42 @@ const DeleteModal = ({ open, onClose }) => {
         </div>
       </div>
     </TransitionsModal>
+  )
+}
+
+const RefineAIFeedback = ({ children }) => {
+  const content = children.split('\n')
+  const sections = []
+  let currentSection = null
+
+  content.forEach((line) => {
+    line = line.trimStart()
+    if (line.startsWith('### ')) {
+      if (currentSection) {
+        sections.push(currentSection)
+      }
+      currentSection = {
+        title: line.trimStart().replace('### ', ''),
+        content: [],
+      }
+    } else if (currentSection) {
+      // line = line.replace(/\#\#\#/g, '');
+      currentSection.content.push(line.replace(/\*\*/g, ''))
+    }
+  })
+
+  if (currentSection) {
+    sections.push(currentSection)
+  }
+
+  return (
+    <div className="min-h-[130px] shadow-sm bg-white rounded-[10px] whitespace-pre-wrap mb-[16px] max-h-[300px] overflow-scroll">
+      {sections.map((section, index) => (
+        <div key={index} style={{ padding: 10 }}>
+          <Chip label={section.title} color="primary" />
+          <p style={{ margin: 5 }}>{section.content.join('\n')}</p>
+        </div>
+      ))}
+    </div>
   )
 }

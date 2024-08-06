@@ -25,7 +25,7 @@ export const price = {
   ],
 }
 
-export const change = {
+const change = {
   '2024-07-11': [
     {
       stock: 'AAPL',
@@ -89,6 +89,40 @@ export const change = {
   ],
 }
 
+export const getChangedData = (date) => {
+  const changedDatas = change[date]
+  if (!changedDatas) {
+    return []
+  }
+
+  return changedDatas.map((changedData) => ({
+    type: changedData.changed > 0 ? '매수' : '매도',
+    kind: changedData.stock,
+    price: changedData.price,
+    amount: Math.abs(changedData.changed),
+    totalPrice: changedData.price * Math.abs(changedData.changed),
+  }))
+}
+
+export const getResultData = (before, now) => {
+  const beforeDatas = change[before]
+
+  if (!beforeDatas) {
+    return []
+  }
+
+  return beforeDatas.map((beforeData) => ({
+    type: beforeData.changed > 0 ? '매수' : '매도',
+    kind: beforeData.stock,
+    before_price: beforeData.price,
+    now_price: price[beforeData.stock][dateToIndex(now)],
+    changed:
+      beforeData.changed > 0
+        ? price[beforeData.stock][dateToIndex(now)] - beforeData.price
+        : beforeData.price - price[beforeData.stock][dateToIndex(now)],
+  }))
+}
+
 const dates = [
   '2024-07-08',
   '2024-07-09',
@@ -116,3 +150,5 @@ const dates = [
 ]
 
 export const dateToIndex = (date) => dates.indexOf(date)
+
+export default function main() {}
