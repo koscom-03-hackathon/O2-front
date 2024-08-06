@@ -123,7 +123,7 @@ const Strategy = ({ data }) => {
   return (
     <>
       <Title>매매 현황</Title>
-      <ChangeBox date={dayjs().format('YYYY-MM-DD')} />
+      <ChangeBox date={data.date} />
       <Title>투자 전략</Title>
       <Content>{data.strategy}</Content>
       <Title>투자 근거</Title>
@@ -239,7 +239,6 @@ const Button = ({ children, onClick }) => {
 }
 
 const ResearchModal = ({ open, onClose, content, type }) => {
-  console.log(content)
   return (
     <TransitionsModal open={open} onClose={onClose}>
       <div className="py-8 px-8 w-[800px] bg-white rounded-lg flex flex-col items-center">
